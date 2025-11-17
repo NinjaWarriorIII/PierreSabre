@@ -23,7 +23,7 @@ public class Humain {
 		this.argent = argent;
 	}
 	
-	public void parler(String texte) {
+	protected void parler(String texte) {
 		System.out.println("(" + nomString + ") - " + texte);
 	}
 	
@@ -35,11 +35,11 @@ public class Humain {
 		parler("Mmmm, un bon verre de " + boissonString + " ! GLOUPS !");
 	}
 	
-	private void gagnerArgent(int gain) {
+	protected void gagnerArgent(int gain) {
 		argent += gain;
 	}
 	
-	private void perdreArgent(int perte) {
+	protected void perdreArgent(int perte) {
 		argent -= perte;
 	}
 	

@@ -6,7 +6,7 @@ public class Humain {
 	private int argent;
 	private int nbMaxConnaissance = 3;
 	Humain[] memoireHumain = new Humain[nbMaxConnaissance];
-	private int nbConnaissance = 0;
+	protected int nbConnaissance = 0;
 	
 	public void faireConnaissanceAvec(Humain autreHumain) {
 		direBonjour();

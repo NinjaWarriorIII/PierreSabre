@@ -4,6 +4,47 @@ public class Humain {
 	private String nomString;
 	private String boissonString;
 	private int argent;
+	private int nbMaxConnaissance = 3;
+	Humain[] memoireHumain = new Humain[nbMaxConnaissance];
+	private int nbConnaissance = 0;
+	
+	public void faireConnaissanceAvec(Humain autreHumain) {
+		direBonjour();
+		autreHumain.repondre(this);
+		memoriser(autreHumain);
+	}
+	
+	public void repondre(Humain autreHumain) {
+		direBonjour();
+		memoriser(autreHumain);
+	}
+	
+	public void memoriser(Humain humain) {
+		if(nbConnaissance < nbMaxConnaissance) {
+			memoireHumain[nbConnaissance] = humain;
+			nbConnaissance++;
+		}
+		else {
+			for(int i = 0; i < memoireHumain.length - 1; i++) {
+				memoireHumain[i] = memoireHumain[i + 1];
+			}
+			memoireHumain[memoireHumain.length - 1] = humain;
+		}
+	}
+	
+	public void listerConnaissance() {
+		StringBuilder texte = new StringBuilder();
+		
+		texte.append("Je connais beaucoup de monde dont : ");
+		for(int i = 0; i < nbConnaissance; i++) {
+			texte.append(memoireHumain[i].getNomString());
+			if(i < nbConnaissance - 1) {
+				texte.append(", ");
+			}
+		}
+		parler(texte.toString());
+	}
+	
 	
 	public String getNomString() {
 		return nomString;
@@ -28,7 +69,7 @@ public class Humain {
 	}
 	
 	public void direBonjour() {
-		parler("Bonjour ! Je m’appelle " + nomString + " et j’aime boire du " + boissonString);
+		parler("Bonjour ! Je mï¿½appelle " + nomString + " et jï¿½aime boire du " + boissonString);
 	}
 	
 	public void boire() {
@@ -45,11 +86,11 @@ public class Humain {
 	
 	public void acheterBien(String bien, int prix) {
 		if (prix <= argent) {
-			parler("J'ai " + argent + " sous en poche. Je vais pouvoir m'orir " + bien + " à " + prix + " sous");
+			parler("J'ai " + argent + " sous en poche. Je vais pouvoir m'orir " + bien + " ï¿½ " + prix + " sous");
 			perdreArgent(prix);
 		}
 		else {
-			parler("Je n'ai plus que " + argent + " sous en poche. Je ne peux même pas m'orir " + bien + " à " + prix + " sous.");
+			parler("Je n'ai plus que " + argent + " sous en poche. Je ne peux mï¿½me pas m'orir " + bien + " ï¿½ " + prix + " sous.");
 		}
 	}
 
